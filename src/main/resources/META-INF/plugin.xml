@@ -1,0 +1,59 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>org.example.vag.developer.options.helper</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Developer Options Helper</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="vagprogrammer@gmail.com" url="https://www.yourcompany.com">VAG</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[ Android Studio plugin to toggle different developer options ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+
+        <notificationGroup id="developer options helper group"
+                           displayType="BALLOON"
+                           key="notification.group.common.messages"/>
+
+        <toolWindow
+                icon="AllIcons.Actions.Lightning"
+                id="DEMO LAYOUT HELPER"
+                factoryClass="org.example.vag.developer.options.helper.toolwindows.PluginToolWindowFactory"
+        />
+    </extensions>
+    <actions>
+        <group id="org.intellij.sdk.action.DeveloperOptionsActions"
+               text="Developer Options Actions"
+               popup="true">
+
+            <add-to-group group-id="ToolsMenu"/>
+
+            <action id="org.example.vag.developer.options.helper.actions.ShowLayoutBoundsAction"
+                    class="org.example.vag.developer.options.helper.actions.ShowLayoutBoundsAction"
+                    text="Toggle Show Layout Bounds"
+                    description="Toggle show layout bounds">
+                <keyboard-shortcut keymap="$default" first-keystroke="shift meta alt T"/>
+            </action>
+
+            <action id="org.example.vag.developer.options.helper.actions.DarkModeAction"
+                    class="org.example.vag.developer.options.helper.actions.DarkModeAction" text="Toggle Dark Mode"
+                    description="Toggle dark mode">
+                <keyboard-shortcut keymap="$default" first-keystroke="shift meta alt D"/>
+            </action>
+
+        </group>
+    </actions>
+</idea-plugin>
