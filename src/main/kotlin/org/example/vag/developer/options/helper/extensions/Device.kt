@@ -24,6 +24,9 @@ fun IDevice.setLayoutBounds(enable: Boolean) {
     )
 }
 
+fun IDevice.getSystemFontScale(outputReceiver: SingleLineReceiver) {
+    executeShellCommand("settings get system font_scale", outputReceiver)
+}
 
 fun IDevice.setSystemFontScale(scale: String) {
     executeShellCommand("settings put system font_scale $scale", NullOutputReceiver())

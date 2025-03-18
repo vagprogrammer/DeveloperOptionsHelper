@@ -14,10 +14,11 @@ class PluginToolWindowFactory : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val contentPanel = JPanel(VerticalFlowLayout(FlowLayout.LEFT))
 
-        contentPanel.add(LayoutBoundsPanel.addLayoutBoundsPanel(project))
-        contentPanel.add(DarkModePanel.addDarkModePanel(project))
-        contentPanel.add(SystemFontScalePanel.addSystemFontScalePanel(project))
-        contentPanel.add(FigsyPanel.addFigsyPanel())
+        contentPanel.add(DeviceSelectionPanel.createPanel(project))
+        contentPanel.add(LayoutBoundsPanel.createPanel())
+        contentPanel.add(DarkModePanel.createPanel())
+        contentPanel.add(SystemFontScalePanel.createPanel())
+        contentPanel.add(FigsyPanel.createPanel())
 
         val scrollPanel = JBScrollPane(contentPanel)
         scrollPanel.verticalScrollBarPolicy = JBScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED

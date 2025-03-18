@@ -5,8 +5,8 @@ plugins {
     kotlin("kapt") version "1.9.25"
 }
 
-group = "org.example.vag"
-version = "1.0-SNAPSHOT"
+group = "org.etsy.android.plugin"
+version = "1.0"
 
 repositories {
     mavenCentral()
@@ -17,11 +17,15 @@ repositories {
 intellij {
     version.set("2023.2.6")
     type.set("IC") // Target IDE Platform
-    plugins.set(listOf("android"))
-    // alternativeIdePath("/Applications/Android Studio.app")
+
+    plugins.set(listOf("org.jetbrains.kotlin", "android"))
+    sandboxDir.set("/Users/vaceves/Documents/Workspaces/IntelliJ/AS-Sandbox")
 }
 
 tasks {
+    runIde {
+        ideDir.set(file("/Applications/Android Studio.app/Contents"))
+    }
     // Set the JVM compatibility versions
     withType<JavaCompile> {
         sourceCompatibility = "17"
@@ -45,4 +49,14 @@ tasks {
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.25")
+
+    // Dagger runtime
+    implementation("com.google.dagger:dagger:2.50")
+
+    // Dagger annotation processor
+    kapt("com.google.dagger:dagger-compiler:2.50")
 }
